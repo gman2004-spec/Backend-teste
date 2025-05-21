@@ -1,5 +1,5 @@
 import http from 'http'
-import app from './app.ts'
+import app from './app'
 
 const port = 5555
 
