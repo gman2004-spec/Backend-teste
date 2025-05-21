@@ -24,8 +24,10 @@ export default {
         
     },
 
-    //login : async(req: Request, res: Response) => {
-        
-    //}
-
+    login : async(req: Request, res: Response) => {
+        const {email, password} = req.body
+        const user = await prisma.user.findFirst({where: {email, password}, select: {password: false, id: true, name: true, email: true}})
+        if(user) return res.status(200).json(user)
+        return res.status(404).send("user not found")    
+    }
 }
