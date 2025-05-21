@@ -1,13 +1,15 @@
-import {Router} from "express";
+import { Router, Request, Response } from "express";
+import userController from "./controllers/user";
 
 const routes = Router();
 
-routes.get("/", (req, res) => {
-    return res.send(`novamente um teste`)
+//rota de teste, hello world
+routes.get("/", (req: Request, res: Response) : any => {
+    return res.send('rota de teste')
 })
 
 //rota que retorna um json, uma lista nomeada "items"
-routes.get("/funcionarios", (req, res) => {
+routes.get("/funcionarios", (req : Request, res: Response) : any => {
     return res.json({
         items: [
             {
@@ -38,7 +40,7 @@ routes.get("/funcionarios", (req, res) => {
     });
 });
 
-routes.get("/withImages", (req, res) => {
+routes.get("/withImages", (req: Request, res: Response) : any => {
     return res.json({
         photos: [
             {
@@ -59,5 +61,8 @@ routes.get("/withImages", (req, res) => {
         ]
     })
 })
+
+routes.post("/users", (req: Request, res: Response) : any => userController.create(req, res))
+
 
 export default routes
